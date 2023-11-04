@@ -27,6 +27,9 @@ if(process.env.NODE_ENV === 'test'){
     const testingRouter = require('./controllers/testing')
     app.use('/api/testing',testingRouter)
 }
+app.get('/health',(request,response) => {
+    response.send('OK')
+})
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
