@@ -7,10 +7,10 @@ module.exports = defineConfig({
             // implement node event listeners here
             on('task', {
                 log(message) {
-                    console.log(message +'\n\n');
-                    return null;
+                    console.log(message +'\n\n')
+                    return null
                 },
-            });
+            })
         },
         baseUrl: 'http://localhost:3003',
     },
