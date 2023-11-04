@@ -90,7 +90,7 @@ describe('Blog app', function() {
             cy.wait(1000)
             cy.wait(1000)
             cy.wait(1000)
-           // cy.contains('view').click()
+            // cy.contains('view').click()
             cy.contains('remove').click()
         })
         it('A blog remove button can be seen only by the owner',function(){
