@@ -74,9 +74,10 @@ describe('Blog app', function() {
             //TODO: weird requirement for the test to pass in local machine
             //cy.contains('testing title').parent().contains('view').click()
             cy.contains('testing title').parent().then(ele => {
-                cy.log('****outside THE IF CONDITION 1***********')
+                cy.task('log','outside THE IF CONDITION')
                 if(ele.find('view')){
                     cy.log('****INSIDE THE IF CONDITION 1***********')
+                    cy.task('log','INSIDE THE IF CONDITION')
                     cy.contains('view').click()
                 }
             })
