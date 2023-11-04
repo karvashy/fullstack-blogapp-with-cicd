@@ -2,7 +2,7 @@ import { useState } from 'react'
 import blogService from '../services/blogs'
 
 const BlogLikes = ({ blogLikes, likeHandler }) => {
-    return (<p className="blogLikes">likes {blogLikes}<button onClick={likeHandler}>like</button></p>)
+    return (<p className="blogLikes">likes {blogLikes}<button className='like-button' onClick={likeHandler}>like</button></p>)
 }
 
 const Blog = ({ blog,user }) => {

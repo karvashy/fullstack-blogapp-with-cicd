@@ -73,11 +73,22 @@ describe('Blog app', function() {
             cy.wait(1000)
             //TODO: weird requirement for the test to pass in local machine
             //cy.contains('testing title').parent().contains('view').click()
+            /*
             cy.contains('testing title').parent().then(ele => {
                 cy.task('log','outside THE IF CONDITION')
                 if(ele.find('view')){
                     cy.log('****INSIDE THE IF CONDITION 1***********')
                     cy.task('log','INSIDE THE IF CONDITION')
+                    cy.contains('view').click()
+                }
+            })
+            */
+            cy.get('button').then($button => {
+                if ($button.length > 5) {
+                    // Like Button exists, click it
+                    cy.contains('like').click()
+                } else {
+                    // Like Button does not exist
                     cy.contains('view').click()
                 }
             })
@@ -103,12 +114,20 @@ describe('Blog app', function() {
             cy.wait(1000)
             //TODO: weird requirement for the test to pass in local machine
             // cy.contains('view').click()
+            cy.get('button').then($button => {
+                if ($button.length <= 5) {
+                    // Remove Button does not exists, so click view
+                    cy.contains('view').click()
+                }
+            })
+            /*
             cy.contains('testing title').parent().then(ele => {
                 if(ele.find('view')){
                     cy.log('****INSIDE THE IF CONDITION***********')
                     cy.contains('view').click()
                 }
             })
+            */
             cy.contains('remove').click()
         })
         it('A blog remove button can be seen only by the owner',function(){
