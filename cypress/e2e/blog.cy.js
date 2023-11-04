@@ -71,24 +71,16 @@ describe('Blog app', function() {
             cy.wait(1000)
             cy.contains('testing title').parent().contains('view').click()
             cy.wait(1000)
-            //TODO: weird requirement for the test to pass in local machine
-            //cy.contains('testing title').parent().contains('view').click()
-            /*
-            cy.contains('testing title').parent().then(ele => {
-                cy.task('log','outside THE IF CONDITION')
-                if(ele.find('view')){
-                    cy.log('****INSIDE THE IF CONDITION 1***********')
-                    cy.task('log','INSIDE THE IF CONDITION')
-                    cy.contains('view').click()
-                }
-            })
-            */
+            //NOTE : weird requirement for the test to pass in local machine
+            // Cypress needs to press the view button twice to register a press
+            // cy.contains('testing title').parent().contains('view').click()
+            // The below condition is required because the view button is not presssed
+            // (cypress acting weird when) the tests are executed locally vs remotely in CICD
+            // So need to make sure the view button is pressed through the condition below
             cy.get('button').then($button => {
-                if ($button.length > 5) {
+                if ($button.length <= 5) {
                     // Like Button exists, click it
-                    cy.contains('like').click()
-                } else {
-                    // Like Button does not exist
+                    cy.task('log','the like button is not found the first time. So the view button is clicked again')
                     cy.contains('view').click()
                 }
             })
@@ -112,22 +104,19 @@ describe('Blog app', function() {
             cy.wait(1000)
             cy.wait(1000)
             cy.wait(1000)
-            //TODO: weird requirement for the test to pass in local machine
+            //NOTE : weird requirement for the test to pass in local machine
+            // Cypress needs to press the view button twice to register a press
             // cy.contains('view').click()
+            // The below condition is required because the view button is not presssed
+            // (cypress acting weird when) the tests are executed locally vs remotely in CICD
+            // So need to make sure the view button is pressed through the condition below
             cy.get('button').then($button => {
                 if ($button.length <= 5) {
                     // Remove Button does not exists, so click view
+                    cy.task('log','the remove button is not found the first time. So the view button is clicked again')
                     cy.contains('view').click()
                 }
             })
-            /*
-            cy.contains('testing title').parent().then(ele => {
-                if(ele.find('view')){
-                    cy.log('****INSIDE THE IF CONDITION***********')
-                    cy.contains('view').click()
-                }
-            })
-            */
             cy.contains('remove').click()
         })
         it('A blog remove button can be seen only by the owner',function(){
