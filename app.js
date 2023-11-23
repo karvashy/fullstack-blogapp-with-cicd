@@ -28,7 +28,7 @@ if(process.env.NODE_ENV === 'test'){
     app.use('/api/testing',testingRouter)
 }
 app.get('/health',(request,response) => {
-    response.send('OK')
+    return response.send('OK')
 })
 
 app.use(middleware.unknownEndpoint)
